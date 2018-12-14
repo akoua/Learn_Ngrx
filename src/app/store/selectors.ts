@@ -32,6 +32,8 @@ export const selectedTodoSelector = createSelector(
         const todoId = routes.params.id;
         if (todoId && todos) {
             //nous permet de retourner le premier element si bcp on le même id
+            //et de plus cela n'est pas optimal car si le tableau de Todo
+            // est très grand le filter mettra assez de temps pour filter            
             return todos.filter( t => t.id === todoId)[0];
         } else{
             return null;
