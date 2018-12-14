@@ -8,10 +8,10 @@
       </div>
       <ul class="list-group">
         <li [routerLink]="['/todo', todo.id]" *ngFor="let todo of todos$ | async;let i = index;" class="list-group-item" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
-          <i (click)="toggleTodo(i)" class="material-icons">{{ todo.done ?  'check_box' : 'check_box_outline_blank'}}</i>
+          <i (click)="toggleTodo(todo.id)" class="material-icons">{{ todo.done ?  'check_box' : 'check_box_outline_blank'}}</i>
           <span fxFlex="auto">{{ todo.message }} </span>
-          <button class="btn btn-lime" (click)="toggleTodo(i)">Toggle</button>
-          <button class="btn btn-danger" (click)="deleteTodo(i)">Supprimer</button>
+          <button class="btn btn-lime" (click)="toggleTodo(todo.id)">Toggle</button>
+          <button class="btn btn-danger" (click)="deleteTodo(todo.id)">Supprimer</button>
         </li>      
       </ul>
     </div>

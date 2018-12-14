@@ -20,14 +20,14 @@ export class ToggleTodo implements Action{
 
     readonly type= ACTION_TODO_TYPE.Toggle;
     //c'est l'index qui nous interesse afin de recuperer la Todo qui correspond
-    constructor(public payload: number ){};
+    constructor(public payload: string ){};
 }
 
 export class DeleteTodo implements Action{
 
     readonly type= ACTION_TODO_TYPE.Delete;
     //c'est l'index qui nous interesse
-    constructor(public payload: number){};
+    constructor(public payload: string){};
 }
 
 export class FetchToDo implements Action {

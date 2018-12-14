@@ -15,7 +15,7 @@ export const todoListSelector = createSelector(
     todoSelector,
     (todoState: TodoState ) => {
         console.log(`\t>>> Selector: ${todoState} `);
-        return todoState.datas;
+        return todoState.data;
     }
 );
 
@@ -26,15 +26,27 @@ export const routeStateSelector = createSelector(
     }
 );
 
+export const todoListArraySelector = createSelector(
+    todoSelector,
+    (todoState: TodoState) => {
+        if (todoState.data) {
+            console.log(`\t>>> Dans le Selector todoState.data : ${todoState.data} `);
+            //on recupere un tableau qui represente les clés puis on crée avec ces clés
+            //un nouveau tableau avec les Todo et ayant pour clé les idTodo
+           return Object.keys(todoState.data).map((idTodo) => todoState.data[idTodo] );
+        } else {
+            //comme la première fois
+            return null;
+        }
+    }
+);
+
 export const selectedTodoSelector = createSelector(
     routeStateSelector, todoListSelector,
-    (routes: MyRouterState, todos: Todo[]) => {
+    (routes: MyRouterState, todos: { [todoId:string] : Todo } ) => {
         const todoId = routes.params.id;
         if (todoId && todos) {
-            //nous permet de retourner le premier element si bcp on le même id
-            //et de plus cela n'est pas optimal car si le tableau de Todo
-            // est très grand le filter mettra assez de temps pour filter            
-            return todos.filter( t => t.id === todoId)[0];
+            return todos[todoId]; 
         } else{
             return null;
         }
