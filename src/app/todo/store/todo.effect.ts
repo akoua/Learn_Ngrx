@@ -4,8 +4,8 @@ import { Observable, of } from "rxjs";
 import { Action } from "@ngrx/store";
 import { ACTION_TODO_TYPE, FetchToDo, FetchToDoSuccess, FetchToDoError } from "./todo.action";
 import { switchMap, map, catchError } from "rxjs/operators";
-import { TodoService } from "../todo.service";
-import { Todo } from "../todo.model";
+import { TodoService } from "../../todo.service";
+import { Todo } from "../../todo.model";
 
 //c'est cette classe que nous allons appeler depuis le forRoot du module
 @Injectable()

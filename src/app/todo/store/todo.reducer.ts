@@ -1,5 +1,4 @@
-import { Action } from "@ngrx/store";
-import { Todo } from "../todo.model";
+import { Todo } from "../../todo.model";
 import { TodoActionType, ACTION_TODO_TYPE } from "./todo.action";
 
 //C'est l'interface TodoReducer
@@ -61,8 +60,8 @@ export function todosReducer(state: TodoState = initialState, action: TodoAction
                 ...state,
                 //comme cela si nous connaissons deja l'id mais comme dans la CreateTodo on ne
                 //signifie pas de id alors nous allons passer par une autre chose
-                    // data: { ...state.data, [action.payload.id]: action.payload }
-                data: { ...state.data, [Object.keys(state.data).length] : action.payload }
+                    data: { ...state.data, [action.payload.id]: action.payload }
+                // data: { ...state.data, [Object.keys(state.data).length] : action.payload }
             };
         case ACTION_TODO_TYPE.Delete:
             //Nous allons copier le tableau puis supprimer l'élément concerné après cela

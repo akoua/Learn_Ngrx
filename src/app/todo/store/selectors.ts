@@ -1,14 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TodoState } from './todo.reducer';
-import { MyRouterState } from './router.helper';
+import { MyRouterState } from '../../store/router.helper';
 import * as routerReducer from '@ngrx/router-store';
-import { Todo } from '../todo.model';
+import { Todo } from '../../todo.model';
 
 //Du fait qu'on a un seul Store par App, les selectors vont nous permettre de selectionner
 //les grosses parties, cad les states souhaités
 
 //Cela correspond au plus haut niveau dans notre state
-export const todoSelector = createFeatureSelector<TodoState>('todos_state');
+export const todoSelector = createFeatureSelector<TodoState>('todo_state');
 export const routeSelector = createFeatureSelector<routerReducer.RouterReducerState<MyRouterState>>('router_state');
 
 export const todoListSelector = createSelector(
@@ -29,8 +29,7 @@ export const routeStateSelector = createSelector(
 export const todoListArraySelector = createSelector(
     todoSelector,
     (todoState: TodoState) => {
-        if (todoState.data) {
-            console.log(`\t>>> Dans le Selector todoState.data : ${todoState.data} `);
+        if (todoState.data) {        
             //on recupere un tableau qui represente les clés puis on crée avec ces clés
             //un nouveau tableau avec les Todo et ayant pour clé les idTodo
            return Object.keys(todoState.data).map((idTodo) => todoState.data[idTodo] );

@@ -1,5 +1,4 @@
 import { ActionReducerMap, Action } from "@ngrx/store";
-import * as todoReducerCall from './todo.reducer';
 import * as routerReducer from '@ngrx/router-store';
 import { MyRouterState } from "./router.helper";
 
@@ -12,14 +11,12 @@ import { MyRouterState } from "./router.helper";
 //C'est l'interface State qui represente l'état general de l'appli
     //les noms donnés ici sont ceux affichés dans le devtool-store
 export interface State{
-    todos_state: todoReducerCall.TodoState;
     router_state: routerReducer.RouterReducerState<MyRouterState>;
 }
 
 //Nous allons implementer le niveau le plus haut de notre reducer 
 //qui sera une map de tous nos reducers
 
-export const reducers: ActionReducerMap<State> = {
-    todos_state: todoReducerCall.todosReducer,
+export const reducers: ActionReducerMap<State> = {    
     router_state: routerReducer.routerReducer,
 }

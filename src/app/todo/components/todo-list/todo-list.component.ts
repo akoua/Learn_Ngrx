@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
-import { Todo } from '../../todo.model';
-import { TodoService } from '../../todo.service';
+import { Todo } from '../../../todo.model';
+import { TodoService } from '../../../todo.service';
 import { Store, select } from "@ngrx/store";
-import { State } from '../../store';
-import * as todoClass from '../../store/todo.action';
+import { State } from '../../../store';
+import * as todoClass from '../../../todo/store/todo.action';
 import { TodoState } from '../../store/todo.reducer';
-import { todoListSelector, selectedTodoSelector, todoListArraySelector } from '../../store/selectors';
+import { todoListSelector, selectedTodoSelector, todoListArraySelector } from '../../../todo/store/selectors';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-todo-list',
@@ -32,7 +33,7 @@ export class TodoListComponent implements OnInit {
   public addTodo() {
     //si nous devons enregistrer dans une BD il va falloir passer par un Effect enregistrer
     //d'abord et par la suite ramener cela pour le passer comme argument      
-    this.store.dispatch( new todoClass.CreateTodo ( { message: this.message, done: false} )); 
+    this.store.dispatch( new todoClass.CreateTodo ( {id: uuid(), message: this.message, done: false} )); 
   }
 
   public toggleTodo(id: string) {
