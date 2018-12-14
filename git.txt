@@ -1,0 +1,6 @@
+echo "# Learn_Ngrx" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/akoua/Learn_Ngrx.git
+git push -u origin master
