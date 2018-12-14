@@ -34,9 +34,12 @@ import { MyRouteStateSerializer } from './store/router.helper';
       path: '', redirectTo: 'todo', pathMatch: 'full'
     }, {
       path: 'todo', component: TodoListComponent
+    },
+    {
+      path: 'todo/:id', component: TodoListComponent
     }
     ]),
-    StoreRouterConnectingModule
+    StoreRouterConnectingModule, //forRoot({ stateKey: 'routing name'})
   ],
   providers: [
     {

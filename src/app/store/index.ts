@@ -10,6 +10,7 @@ import { MyRouterState } from "./router.helper";
 
 
 //C'est l'interface State qui represente l'état general de l'appli
+    //les noms donnés ici sont ceux affichés dans le devtool-store
 export interface State{
     todos_state: todoReducerCall.TodoState;
     router_state: routerReducer.RouterReducerState<MyRouterState>;

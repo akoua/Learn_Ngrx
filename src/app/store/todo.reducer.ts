@@ -13,6 +13,7 @@ export interface TodoState {
 const initialState: TodoState = {
     datas: [
         {
+            id: '0',
             message: 'initial state',
             done: false
         }
@@ -36,7 +37,7 @@ export function todosReducer(state: TodoState = initialState, action: TodoAction
             };
         case ACTION_TODO_TYPE.Fetch_Success : 
             return {
-                ...state,
+                ...state,                
                 datas: action.payload ,
                 loading: false,
                 loaded: true,

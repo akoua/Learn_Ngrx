@@ -7,14 +7,17 @@
         <button class="btn btn-primary" (click)="addTodo()">Ajouter</button>
       </div>
       <ul class="list-group">
-        <li *ngFor="let todo of todos$ | async;let i = index;" class="list-group-item" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
+        <li [routerLink]="['/todo', todo.id]" *ngFor="let todo of todos$ | async;let i = index;" class="list-group-item" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
           <i (click)="toggleTodo(i)" class="material-icons">{{ todo.done ?  'check_box' : 'check_box_outline_blank'}}</i>
           <span fxFlex="auto">{{ todo.message }} </span>
-          <button class="btn btn-lime" (click)="toggleTodo()">Toggle</button>
+          <button class="btn btn-lime" (click)="toggleTodo(i)">Toggle</button>
           <button class="btn btn-danger" (click)="deleteTodo(i)">Supprimer</button>
         </li>      
       </ul>
     </div>
   </div>
 
+<hr>
+  <div *ngIf="selectedTodo$ | async; let selectedTodo">{{selectedTodo.message}}</div>
+  
   

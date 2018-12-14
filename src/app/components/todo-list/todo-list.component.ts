@@ -7,6 +7,7 @@ import { Store, select } from "@ngrx/store";
 import { State } from '../../store';
 import * as todoClass from '../../store/todo.action';
 import { TodoState } from '../../store/todo.reducer';
+import { todoListSelector, selectedTodoSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,13 +16,10 @@ import { TodoState } from '../../store/todo.reducer';
 })
 export class TodoListComponent implements OnInit {
 
-  public todos$: Observable<Todo[]> = this.store.pipe(
-    //au fond on fait appel aux clés presentes dans le niveau le plus haut de notre reducer
-    select('todos_state'),
-    map((todoState: TodoState) => todoState.datas)
-  );
+  public todos$: Observable<Todo[]> = this.store.pipe(select(todoListSelector));
   public message: string;
 
+  selectedTodo$: Observable<Todo> = this.store.pipe(select(selectedTodoSelector));
   //LA SEULE SOURCE DE VERITE EST LE STORE
 
   constructor(private todoService: TodoService, private store: Store<State>) {}
@@ -33,7 +31,7 @@ export class TodoListComponent implements OnInit {
 
   public addTodo() {
     //this.todoService.addTodo({ message: this.message, done: false });
-    this.store.dispatch( new todoClass.CreateTodo ( {message: this.message, done: false} )); 
+    this.store.dispatch( new todoClass.CreateTodo ( {id:'0', message: this.message, done: false} )); 
   }
 
   public toggleTodo(index: number) {

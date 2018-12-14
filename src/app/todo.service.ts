@@ -16,7 +16,13 @@ export class TodoService {
       tap((x) => console.log(`Tap TodoService ${x} `)),
       map(() => [
         {
+          id: '1',
           message: 'http call ',
+          done: false
+        },
+        {
+          id: '2',
+          message: 'Movie',
           done: false
         }
       ])
