@@ -7,12 +7,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
-import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { StoreRouterConnectingModule, RouterStateSerializer } from "@ngrx/router-store";
 import { reducers } from "./store";
 
 import { AppComponent } from './app.component';
 import { TodoEffects } from './store/todo.effect';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { MyRouteStateSerializer } from './store/router.helper';
 
 
 @NgModule({
@@ -37,7 +38,12 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     ]),
     StoreRouterConnectingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouterStateSerializer,
+      useClass: MyRouteStateSerializer
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
